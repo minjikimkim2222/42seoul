@@ -62,7 +62,20 @@ double va_sum(int type, ...)
  }
  </pre>
  </code>
-      
+ 
+ </br>
+ 
+ 3.프로젝트 진행 중 알게 된 점
+ ==========
+ 1. va_arg(ap, char)형 -> waring
+ 실제로 va_arg()함수는 char형 타입을 읽는 것을 정의하고 있다. </br>
+ 하지만 이때 문제는, va_arg함수가 인자를 읽을 때,인자들은 char형을 int형으로 promotion되어 더 큰 자료형으로 형변환된다는 것!</br>
+ 
+ 이때, promotion은 c언어에서 자료형의 크기가 작은 타입 -> 큰 타입으로 자동 형변환되는 것. 이 프로모션은 의도치 않은 결과를 초래할 수
+ 있기에 문제가 된다. </br>
+ 예를 들어, signed int가 unsigned int로 promotion이 일어날 때, 부호 비트가 0이 아닌 signed int가(음수) unsigned int로
+ 형변환되면, 그냥 큰 양수로 인식되어 잘못된 결과를 초래할 수도 있다.
+ 
 
 
 
