@@ -57,11 +57,9 @@ int		ft_printf_format(const char* format, va_list ap)
 		length = length + ft_printf_s(ap);
 	else if ((*format) == 'c')
 		length = length + ft_putchar(va_arg(ap, int));
+	else if ((*format) == 'd' || *(format) == 'i') // << 이 부분 수정!!! 그냥 조건식만 써두었다. 
+		return (1);
 	else if (ft_strncmp(format, "%p", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%d", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%i", 2) == 0)
 		return (1);
 	else if (ft_strncmp(format, "%u", 2) == 0)
 		return (1);
@@ -101,13 +99,31 @@ int	ft_printf_s(va_list	ap)
 ///#include <stdio.h>
 int	main(void)
 {
-	int ret1 = 0;
-	int ret2 = 0;
-	char *s1 = NULL;
+	/*
+	1. %s, %c 테스트 예제.
+	*/
+	// int ret1 = 0;
+	// int ret2 = 0;
+	// char *s1 = NULL;
+
+
+	// ret1 = ft_printf("is it right? => %s %s\n", s1, s1);
+	// ret2 = printf("is it rigth? => %s %s\n", s1, s1); //(null)\n <- 이렇게 7개 리턴값
+	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
+
+
+	/*
+	2. %d, %i 테스트 예제.
+	*/
+	int num1 = 70;
+	int num2 = 070;
+	int num3 = 0x70;
 	
-	ret1 = ft_printf("a : %s\n", s1);
-	ret2 = printf("a : %s\n", s1); //(null)\n <- 이렇게 7개 리턴값
-	printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
-	//printf(" number : %d\n", 1);
+	printf("num1 : %d %i\n", num1, num1); // 70 70
+	printf("num2 : %d %i\n", num2, num2); // 56 56
+	printf("num3 : %d %i\n", num3, num3); // 112 112
+	// 결국 %d %i는 차이없고 진수변환이 핵심
+
+	
 	return (0);
 }
