@@ -67,7 +67,7 @@ double va_sum(int type, ...)
  
  3.프로젝트 진행 중 알게 된 점
  ==========
- 1. va_arg(ap, char)형 -> waring
+ ### 1. va_arg(ap, char)형 -> warning
  실제로 va_arg()함수는 char형 타입을 읽는 것을 정의하고 있다. </br>
  하지만 이때 문제는, va_arg함수가 인자를 읽을 때,인자들은 char형을 int형으로 promotion되어 더 큰 자료형으로 형변환된다는 것!</br>
  
@@ -75,7 +75,31 @@ double va_sum(int type, ...)
  있기에 문제가 된다. </br>
  예를 들어, signed int가 unsigned int로 promotion이 일어날 때, 부호 비트가 0이 아닌 signed int가(음수) unsigned int로
  형변환되면, 그냥 큰 양수로 인식되어 잘못된 결과를 초래할 수도 있다.
+ </br>
  
+ ### 2. %d랑 %i 차이점
+ - **printf** </br>
+   printf에서는 둘 다 10진수 정수 입출력으로 같다
+ - **scanf** </br>
+   scanf에서 %d는 해당 입력값을 오직 10진수로만 해석 가능. </br>
+   반면, %i는 들어오는 값에 따라 10진수, 8진수, 16진수로 해석 가능. 예를 들어 scanf에서 %i를
+   쓰고, 70을 받았을 때 10진수인 70으로 해석, 070을 받았을 때 8진수인 56으로 해석, 0x70을 받았을 때, 16진수인 112로 해석
+ - **예제** </br>
+  <pre>
+  <code>
+  int num2 = 070;
+  int num3;
+  int num4;
+  
+  printf("%d %i", num2, num2); // 56 56 (070을 8진수로 인식해서 56 출력, 만일 num2 = 0x70이라면 112 112 출력)
+  
+  scanf("%d", &num3); // 070 -> scanf에서 %d는 뭘 넣든(심지어 8진수를..), 전부 10진수로 해석 -> num3 = 70
+  scanf("%i", &num4); // 070 -> scanf에서 %i는 10진수, 8진수, 16진수 구분 가능 -> num4 = 56
+  printf("num3 : %d, num4 : %d, num3 : %i, num4 : %i); // 70, 56, 70, 56 -> 즉 printf에서 %d랑 %i는 해석한 정수를 기반으로 출력
+  </pre>
+  </code>
+  </br>
+  
 
 
 
