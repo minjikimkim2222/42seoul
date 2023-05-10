@@ -14,32 +14,9 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-const char*	ft_printf_s(va_list	ap, const char*	format);
-int		compare_format(const char* format);
-
-int	ft_printf(const char*	format, ...) //리턴값 : 출력 성공 -> 문자열의 길이, 실패 : -1
-{
-	va_list	ap;
-	int		printf_length; //prinft_length -> 수정하기 + 선언만 해둠
-
-	va_start(ap, format);
-	printf_length = 0;
-	while (*format)
-	{
-		if (compare_format(format))
-		{
-			if (*(format + 1) == 's')
-				format = ft_printf_s(ap, format);
-		}
-		else
-		{
-			write(1, format, 1);
-			format++;
-		}
-	}
-	va_end(ap);
-	return (0);
-}
+int	ft_printf_s(va_list	ap, const char*	format);
+int	ft_putchar(char c);
+int		ft_printf_format(const char* format, va_list ap);
 
 int	ft_putchar(char c)
 {
@@ -47,12 +24,39 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int		compare_format(const char* format)
+int	ft_printf(const char*	format, ...) //리턴값 : 출력 성공 -> 문자열의 길이, 실패 : -1
 {
-	if (ft_strncmp(format, "%s", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%c", 2) == 0)
-		return (1);
+	va_list	ap;
+	int		length;
+
+	va_start(ap, format);
+	length = 0;
+	while (*format)
+	{
+		if ((*format) == '%')
+		{
+				length = length + ft_printf_format(format + 1, ap);
+				format = format + 2;
+		}
+		else
+		{
+			length += ft_putchar(*format);
+			format++;
+		}
+	}
+	va_end(ap);
+	return (length);
+}
+
+int		ft_printf_format(const char* format, va_list ap)
+{
+	int length;
+
+	length = 0;
+	if ((*format) == 's')
+		length = length + ft_printf_s(ap, format);
+	else if ((*format) == 'c')
+		length = length + ft_putchar(va_arg(ap, int));
 	else if (ft_strncmp(format, "%p", 2) == 0)
 		return (1);
 	else if (ft_strncmp(format, "%d", 2) == 0)
@@ -67,30 +71,30 @@ int		compare_format(const char* format)
 		return (1);
 	else if (ft_strncmp(format, "%%", 2) == 0)
 		return (1);
-	else
-		return (0);
+	return (length);
 }
 
-const char*	ft_printf_s(va_list	ap, const char*	format)
+int	ft_printf_s(va_list	ap, const char*	format)
 {
 	char*	str;
+	int length;
 
 	str = va_arg(ap, char*);
+	length = 0;
 	while (*str)
 	{
-		write(1, str, 1);
+		length = length + ft_putchar(*str);
 		str++;
 	}
-	format = format + 2;
-	return (format);
+	return (length);
 }
 
 ///#include <stdio.h>
 int	main(void)
 {
 	int ret1 = 0, ret2 = 0;
-	ret1 = ft_printf("name = %s\n", "tom");
-	ret2 = printf("name = %s\n", "tom");
+	ret1 = ft_printf("character = %c\n", 'a');
+	ret2 = printf("character = %c\n", 'a');
 	printf("ret1 : %d\n", ret1);
 	printf("ret2 : %d\n", ret2);
 	//printf(" number : %d\n", 1);
