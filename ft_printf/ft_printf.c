@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	ft_printf_s(va_list	ap, const char*	format);
+int	ft_printf_s(va_list	ap);
 int	ft_putchar(char c);
 int		ft_printf_format(const char* format, va_list ap);
 
@@ -54,7 +54,7 @@ int		ft_printf_format(const char* format, va_list ap)
 
 	length = 0;
 	if ((*format) == 's')
-		length = length + ft_printf_s(ap, format);
+		length = length + ft_printf_s(ap);
 	else if ((*format) == 'c')
 		length = length + ft_putchar(va_arg(ap, int));
 	else if (ft_strncmp(format, "%p", 2) == 0)
@@ -74,13 +74,22 @@ int		ft_printf_format(const char* format, va_list ap)
 	return (length);
 }
 
-int	ft_printf_s(va_list	ap, const char*	format)
+int	ft_printf_s(va_list	ap)
 {
 	char*	str;
 	int length;
+	char*	p;
 
 	str = va_arg(ap, char*);
 	length = 0;
+
+	if (str == NULL)
+	{
+		p = "(null)";
+		while (p[length])
+			length += ft_putchar(p[length]);
+		return (length);
+	}
 	while (*str)
 	{
 		length = length + ft_putchar(*str);
@@ -92,11 +101,13 @@ int	ft_printf_s(va_list	ap, const char*	format)
 ///#include <stdio.h>
 int	main(void)
 {
-	int ret1 = 0, ret2 = 0;
-	ret1 = ft_printf("character = %c\n", 'a');
-	ret2 = printf("character = %c\n", 'a');
-	printf("ret1 : %d\n", ret1);
-	printf("ret2 : %d\n", ret2);
+	int ret1 = 0;
+	int ret2 = 0;
+	char *s1 = NULL;
+	
+	ret1 = ft_printf("a : %s\n", s1);
+	ret2 = printf("a : %s\n", s1); //(null)\n <- 이렇게 7개 리턴값
+	printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
 	//printf(" number : %d\n", 1);
 	return (0);
 }
