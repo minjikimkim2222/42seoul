@@ -58,7 +58,7 @@ int		ft_printf_format(const char* format, va_list ap)
 	else if ((*format) == 'c')
 		length = length + ft_putchar(va_arg(ap, int));
 	else if ((*format) == 'd' || *(format) == 'i') // << 이 부분 수정!!! 그냥 조건식만 써두었다. 
-		return (1);
+		length = length + ft_printf_d_i(ap);
 	else if (ft_strncmp(format, "%p", 2) == 0)
 		return (1);
 	else if (ft_strncmp(format, "%u", 2) == 0)
@@ -96,6 +96,25 @@ int	ft_printf_s(va_list	ap)
 	return (length);
 }
 
+int	ft_printf_d_i(va_list ap)
+{
+	int n;
+	int length;
+
+	n = va_arg(ap, int);
+	length = 0;
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		length = 11;
+	}
+	else // <---- 이 else문 이하부터 구현
+	{
+		ft_putnbr(); 
+	}
+	return (length);
+}
+
 ///#include <stdio.h>
 int	main(void)
 {
@@ -116,17 +135,6 @@ int	main(void)
 	2. %d, %i 테스트 예제.
 	*/
 	int num1 = 70;
-	
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		length = 11;
-	}
-	else
-		ft_putnbr(n, &length);
-		return (length);
-	
-	// 
 
 	
 	return (0);
