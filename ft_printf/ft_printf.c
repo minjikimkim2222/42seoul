@@ -17,6 +17,8 @@
 int	ft_printf_s(va_list	ap);
 int	ft_putchar(char c);
 int		ft_printf_format(const char* format, va_list ap);
+int	ft_printf_d_i(va_list ap);
+int	ft_putnbr(int n);
 
 int	ft_putchar(char c)
 {
@@ -101,18 +103,25 @@ int	ft_printf_d_i(va_list ap)
 	int n;
 	int length;
 
-	n = va_arg(ap, int);
+	n = va_arg(ap, int); // num1 = 70, n = 70
 	length = 0;
+	printf("\n in ft_printf_f_d에서의 n : %d\n", n);
 	if (n == -2147483648)
 	{
 		write(1, "-2147483648", 11);
 		length = 11;
 	}
-	else // <---- 이 else문 이하부터 구현
+	else // <---- 이 else문 이하부터 구현 + ft_putnbr()함수 구현
 	{
-		ft_putnbr(); 
+		length = length + ft_putnbr(n); 
 	}
 	return (length);
+}
+
+int	ft_putnbr(int n)
+{
+	n = 2;
+	return (n);
 }
 
 ///#include <stdio.h>
@@ -135,6 +144,12 @@ int	main(void)
 	2. %d, %i 테스트 예제.
 	*/
 	int num1 = 70;
+	printf("num1 : %d\n", num1);
+	ft_printf("num1 : %d\n", num1);
+
+	int ret1 = printf("num1 : %d\n", num1);
+	int ret2 = ft_printf("num1 : %d\n", num1);
+	printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
 
 	
 	return (0);
