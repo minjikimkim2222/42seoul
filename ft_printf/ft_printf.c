@@ -116,13 +116,17 @@ int	main(void)
 	2. %d, %i 테스트 예제.
 	*/
 	int num1 = 70;
-	int num2 = 070;
-	int num3 = 0x70;
 	
-	printf("num1 : %d %i\n", num1, num1); // 70 70
-	printf("num2 : %d %i\n", num2, num2); // 56 56
-	printf("num3 : %d %i\n", num3, num3); // 112 112
-	// 결국 %d %i는 차이없고 진수변환이 핵심
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		length = 11;
+	}
+	else
+		ft_putnbr(n, &length);
+		return (length);
+	
+	// 
 
 	
 	return (0);
