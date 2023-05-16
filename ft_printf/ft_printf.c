@@ -12,13 +12,7 @@
 
 //최종적으로 makefile 실행되는지 점검
 #include "ft_printf.h"
-#include <stdio.h>
-
-int	ft_printf_s(va_list	ap);
-int	ft_putchar(char c);
-int		ft_printf_format(const char* format, va_list ap);
-int	ft_printf_d_i(va_list ap);
-int	ft_putnbr(int n);
+#include <stdio.h> // <--------- 나중에 뺄 것
 
 int	ft_putchar(char c)
 {
@@ -61,16 +55,16 @@ int		ft_printf_format(const char* format, va_list ap)
 		length = length + ft_putchar(va_arg(ap, int));
 	else if ((*format) == 'd' || *(format) == 'i') // << 이 부분 수정!!! 그냥 조건식만 써두었다. 
 		length = length + ft_printf_d_i(ap);
-	else if (ft_strncmp(format, "%p", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%u", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%x", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%X", 2) == 0)
-		return (1);
-	else if (ft_strncmp(format, "%%", 2) == 0)
-		return (1);
+	// else if (ft_strncmp(format, "%p", 2) == 0)
+	// 	return (1);
+	// else if (ft_strncmp(format, "%u", 2) == 0)
+	// 	return (1);
+	// else if (ft_strncmp(format, "%x", 2) == 0)
+	// 	return (1);
+	// else if (ft_strncmp(format, "%X", 2) == 0)
+	// 	return (1);
+	// else if (ft_strncmp(format, "%%", 2) == 0)
+	// 	return (1);
 	return (length);
 }
 
@@ -98,32 +92,6 @@ int	ft_printf_s(va_list	ap)
 	return (length);
 }
 
-int	ft_printf_d_i(va_list ap)
-{
-	int n;
-	int length;
-
-	n = va_arg(ap, int); // num1 = 70, n = 70
-	length = 0;
-	printf("\n in ft_printf_f_d에서의 n : %d\n", n);
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		length = 11;
-	}
-	else // <---- 이 else문 이하부터 구현 + ft_putnbr()함수 구현
-	{
-		length = length + ft_putnbr(n); 
-	}
-	return (length);
-}
-
-int	ft_putnbr(int n)
-{
-	n = 2;
-	return (n);
-}
-
 ///#include <stdio.h>
 int	main(void)
 {
@@ -142,13 +110,14 @@ int	main(void)
 
 	/*
 	2. %d, %i 테스트 예제.
+	n = 123, -123, -2147483648, ... test 필요
 	*/
-	int num1 = 70;
+	int num1 = 122222;
 	printf("num1 : %d\n", num1);
 	ft_printf("num1 : %d\n", num1);
 
-	int ret1 = printf("num1 : %d\n", num1);
-	int ret2 = ft_printf("num1 : %d\n", num1);
+	int ret1 = printf("isit_num1 : %d\n", num1);
+	int ret2 = ft_printf("isit_num1 : %d\n", num1);
 	printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
 
 	
