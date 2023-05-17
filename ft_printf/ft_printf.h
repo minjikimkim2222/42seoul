@@ -22,5 +22,7 @@ int		ft_printf_s(va_list	ap);
 int		ft_putchar(char c);
 int		ft_printf_format(const char* format, va_list ap);
 int		ft_printf_d_i(va_list ap);
+int		ft_printf_p(va_list ap);
+int		ptr_int_hex(unsigned long long n, int* length);
 
 #endif
