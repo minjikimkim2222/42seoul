@@ -14,6 +14,9 @@
 #include "ft_printf.h"
 #include <stdio.h> // <--------- 나중에 뺄 것
 
+int	ft_printf_p(va_list ap);
+int	ptr_int_hex(unsigned long long n, int* length);
+
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -53,10 +56,10 @@ int		ft_printf_format(const char* format, va_list ap)
 		length = length + ft_printf_s(ap);
 	else if ((*format) == 'c')
 		length = length + ft_putchar(va_arg(ap, int));
-	else if ((*format) == 'd' || *(format) == 'i') // << 이 부분 수정!!! 그냥 조건식만 써두었다. 
+	else if ((*format) == 'd' || *(format) == 'i')
 		length = length + ft_printf_d_i(ap);
-	// else if (ft_strncmp(format, "%p", 2) == 0)
-	// 	return (1);
+	else if (*(format) == 'p') //// <<<<< 이 부분 수정!
+		length = length + ft_printf_p(ap);
 	// else if (ft_strncmp(format, "%u", 2) == 0)
 	// 	return (1);
 	// else if (ft_strncmp(format, "%x", 2) == 0)
@@ -92,7 +95,46 @@ int	ft_printf_s(va_list	ap)
 	return (length);
 }
 
-///#include <stdio.h>
+int	ft_printf_p(va_list ap)
+{
+	char*	str;
+	int		length;
+
+	str = (char*)va_arg(ap, void *);
+	write(1, "0x", 2);
+	length = 2;
+	length = ptr_int_hex((unsigned long long)str, &length);
+	return (length);
+}
+
+int	ptr_int_hex(unsigned long long n, int* length)
+{
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	if (n < 16)
+	{
+		write(1, hex + n, 1);
+		(*length)++;
+	}
+	else
+	{
+		ptr_int_hex(n/16, length);
+		write(1, hex + (n%16), 1);
+		(*length)++;
+	}
+	return ((*length));
+}
+
+// int	main(void)
+// {
+// 	int length = 0;
+// 	//ptr_int_hex(10, &length); // a 출력
+// 	int ret = ptr_int_hex(1234, &length);
+// 	printf("\nreturn값 : ptr_int_hex : %d\n", ret);
+// }
+
+// ///#include <stdio.h>
 int	main(void)
 {
 	/*
@@ -112,13 +154,31 @@ int	main(void)
 	2. %d, %i 테스트 예제.
 	n = 123, -123, -2147483648, ... test 필요
 	*/
-	int num1 = 122222;
-	printf("num1 : %d\n", num1);
-	ft_printf("num1 : %d\n", num1);
+	// int num1 = 122222;
+	// printf("num1 : %d\n", num1);
+	// ft_printf("num1 : %d\n", num1);
 
-	int ret1 = printf("isit_num1 : %d\n", num1);
-	int ret2 = ft_printf("isit_num1 : %d\n", num1);
-	printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
+	// int ret1 = printf("isit_num1 : %d\n", num1);
+	// int ret2 = ft_printf("isit_num1 : %d\n", num1);
+	// printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
+
+	int i = 5;
+	
+	int ret1 = printf("u ㅣu %p\n", &i);
+	int ret2 = ft_printf("u ㅣu %p\n", &i);
+
+	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
+
+
+	
+	
+
+	/*
+	출력
+	*/
+	// int* ptr_l = &i;
+	// printf("<2> percept p : %p\n", ptr_l);
+	// ft_printf("ft_<2> percept p : %p\n", ptr_l);
 
 	
 	return (0);
