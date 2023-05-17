@@ -55,7 +55,7 @@ int		ft_printf_format(const char* format, va_list ap)
 		length = length + ft_putchar(va_arg(ap, int));
 	else if ((*format) == 'd' || *(format) == 'i')
 		length = length + ft_printf_d_i(ap);
-	else if (*(format) == 'p') //// <<<<< 이 부분 수정!
+	else if (*(format) == 'p')
 		length = length + ft_printf_p(ap);
 	// else if (ft_strncmp(format, "%u", 2) == 0)
 	// 	return (1);
@@ -63,8 +63,11 @@ int		ft_printf_format(const char* format, va_list ap)
 	// 	return (1);
 	// else if (ft_strncmp(format, "%X", 2) == 0)
 	// 	return (1);
-	// else if (ft_strncmp(format, "%%", 2) == 0)
-	// 	return (1);
+	else if (*(format) == '%')
+	{
+		write(1, "%", 1);
+		length++;
+	}
 	return (length);
 }
 
@@ -121,8 +124,8 @@ int	main(void)
 
 	int i = 5;
 	
-	int ret1 = printf("u ㅣu %p\n", &i);
-	int ret2 = ft_printf("u ㅣu %p\n", &i);
+	int ret1 = printf("rr%% right?\n");
+	int ret2 = ft_printf("rr%% right?\n");
 
 	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
 
