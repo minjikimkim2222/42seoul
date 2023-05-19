@@ -57,8 +57,8 @@ int		ft_printf_format(const char* format, va_list ap)
 		length = length + ft_printf_d_i(ap);
 	else if (*(format) == 'p')
 		length = length + ft_printf_p(ap);
-	// else if (ft_strncmp(format, "%u", 2) == 0)
-	// 	return (1);
+	else if (*(format) == 'u')
+		length = length + ft_printf_u(ap);
 	// else if (ft_strncmp(format, "%x", 2) == 0)
 	// 	return (1);
 	// else if (ft_strncmp(format, "%X", 2) == 0)
@@ -122,10 +122,13 @@ int	main(void)
 	// int ret2 = ft_printf("isit_num1 : %d\n", num1);
 	// printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
 
-	int i = 5;
+	//int num = 4294967295; <- unsigned int 최대값, 
+	// ->>>>>>>>>>>%u -> ft_putnbr_u 부분에서 최대 최소 + 재귀 부분 조건 수정 need
+	unsigned int num2 = 4294967296;
 	
-	int ret1 = printf("rr%% right?\n");
-	int ret2 = ft_printf("rr%% right?\n");
+	int ret1 = printf("printf : %u\n", num2);
+	int ret2 = ft_printf("ft_printf : %u\n", num2);
+	
 
 	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
 

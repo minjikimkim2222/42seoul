@@ -24,5 +24,7 @@ int		ft_printf_format(const char* format, va_list ap);
 int		ft_printf_d_i(va_list ap);
 int		ft_printf_p(va_list ap);
 int		ptr_int_hex(unsigned long long n, int* length);
+int		ft_printf_u(va_list ap);
+int		ft_putnbr_u(unsigned int n, int* length);
 
 #endif
