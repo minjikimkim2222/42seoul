@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h> // <<<<<<<<<  나중에 수정
 
 int	ft_printf_d_i(va_list ap)
 {
@@ -63,17 +62,16 @@ int	ft_putnbr_u(unsigned int n, int* length)
 {
 	char	c;
 
-	printf("\nft_putnbr_u : %d, %u\n", n,n);
-	if (n == 0)
+	if (n <= 9)
 	{
-		return (0);
+		c = n + '0';
+		(*length)++;
+		write(1, &c, 1);
 	}
 	else
 	{
 		ft_putnbr_u(n / 10, length);
-		c = (n % 10) + '0';
-		write(1, &c, 1);
-		(*length)++;
+		ft_putnbr_u(n % 10, length);
 	}
 	return (*length);
 }
