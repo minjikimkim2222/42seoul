@@ -124,13 +124,24 @@ int	main(void)
 
 	//int num = 4294967295; <- unsigned int 최대값, 
 	// ->>>>>>>>>>>%u -> ft_putnbr_u 부분에서 최대 최소 + 재귀 부분 조건 수정 need
+
+	// printf %p 시험
+	// int i = 10;
+	// printf("main1 : %p\n", &i);
+	// ft_printf("main2 : %p\n", &i);
+
+	/*
+	printf -> %u 예제
 	unsigned int num2 = 4294967296;
 	
 	int ret1 = printf("printf : %u\n", num2);
 	int ret2 = ft_printf("ft_printf : %u\n", num2);
-	
 
 	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
+
+	*/
+
+	// printf -> %x 예제 <<<<<<<<<<< 이거 할 차례
 
 
 	
@@ -142,6 +153,9 @@ int	main(void)
 	// int* ptr_l = &i;
 	// printf("<2> percept p : %p\n", ptr_l);
 	// ft_printf("ft_<2> percept p : %p\n", ptr_l);
+
+	// print a number in 16진수, with lowercase
+	// print  a number in 16진수, with lowercase
 
 	
 	return (0);
