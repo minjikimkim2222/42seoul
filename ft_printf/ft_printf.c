@@ -59,15 +59,24 @@ int		ft_printf_format(const char* format, va_list ap)
 		length = length + ft_printf_p(ap);
 	else if (*(format) == 'u')
 		length = length + ft_printf_u(ap);
-	// else if (ft_strncmp(format, "%x", 2) == 0)
-	// 	return (1);
-	// else if (ft_strncmp(format, "%X", 2) == 0)
-	// 	return (1);
+	else if ((*format) == 'x' || *(format) == 'X')
+		length = length + ft_printf_x_X(ap, *(format));
 	else if (*(format) == '%')
 	{
 		write(1, "%", 1);
 		length++;
 	}
+	return (length);
+}
+
+int	ft_printf_x_X(va_list ap, char c)
+{
+	int num;
+	int	length;
+
+	length = 0;
+	num = va_arg(ap, int);
+	length = printf_x_X((unsigned int)num, &length, c);
 	return (length);
 }
 
@@ -142,11 +151,14 @@ int	main(void)
 	*/
 
 	// printf -> %x 예제 <<<<<<<<<<< 이거 할 차례
-
-
+	int num = 2147483647;
 	
+	int ret1 = printf("%%d : %d, %%x : %x, %%X : %X\n", num, num, num);
+	int ret2 = ft_printf("%%d : %d, %%x : %x, %%X : %X\n", num, num, num);
 	
+	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
 
+	// <<<<<<<<<<<< %X는 대문자로 나와야 함!!
 	/*
 	출력
 	*/
