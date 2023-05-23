@@ -21,7 +21,6 @@ int	ft_printf_d_i(va_list ap)
 
 int	ft_putnbr(int n, int* length)
 {
-	char	share;
 	char	remainder;
 
 	if (n < 0)
@@ -38,7 +37,6 @@ int	ft_putnbr(int n, int* length)
 	}
 	else
 	{
-		share = (n / 10) + '0';
 		remainder = (n % 10) + '0';
 		n = n / 10;
 		ft_putnbr(n, length);

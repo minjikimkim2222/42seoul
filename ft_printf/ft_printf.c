@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//최종적으로 makefile 실행되는지 점검
 #include "ft_printf.h"
-#include <stdio.h> // <--------- 나중에 뺄 것
 
 int	ft_putchar(char c)
 {
@@ -20,7 +18,7 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int	ft_printf(const char*	format, ...) //리턴값 : 출력 성공 -> 문자열의 길이, 실패 : -1
+int	ft_printf(const char*	format, ...)
 {
 	va_list	ap;
 	int		length;
