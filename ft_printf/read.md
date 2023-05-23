@@ -99,6 +99,11 @@ double va_sum(int type, ...)
   </pre>
   </code>
   </br>
+ 
+ ### 3. ft_printf_p.c에서 ptr_int_hex에서 매개변수로 엄청 큰 unsigned long long int로 받는 이유
+ - 자료형을 생각할 때는 항상 최대, 최소를 넘을 때, 오버플로우가 일어나는지 생각
+ - 일단 주소는 엄청 큰 int형인데. 얘를 16진수로 바꿀 때, unsigned long long int로 안 받고 int로 받으면, int형 최대 이상의 정수를 받은 걸 16진수로 바꿔야 하는데
+   int형으로 int형 최대 범위를 넘는 값을 받으면 음수가 되기에! -> 띠라서 최대한 안전하게 unsigned long long int로 받음!
   
 
 
