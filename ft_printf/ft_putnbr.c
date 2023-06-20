@@ -14,12 +14,12 @@ int	ft_printf_d_i(va_list ap)
 	}
 	else
 	{
-		length = length + ft_putnbr(n, &length); 
+		length = length + ft_putnbr(n, &length);
 	}
 	return (length);
 }
 
-int	ft_putnbr(int n, int* length)
+int	ft_putnbr(int n, int *length)
 {
 	char	remainder;
 
@@ -43,7 +43,7 @@ int	ft_putnbr(int n, int* length)
 		write(1, &remainder, 1);
 		(*length)++;
 	}
-	return (int)(*length);
+	return ((int)(*length));
 }
 
 int	ft_printf_u(va_list ap)
@@ -56,7 +56,7 @@ int	ft_printf_u(va_list ap)
 	return (length);
 }
 
-int	ft_putnbr_u(unsigned int n, int* length)
+int	ft_putnbr_u(unsigned int n, int *length)
 {
 	char	c;
 

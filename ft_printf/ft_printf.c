@@ -18,7 +18,7 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int	ft_printf(const char*	format, ...)
+int	ft_printf(const char	*format, ...)
 {
 	va_list	ap;
 	int		length;
@@ -42,9 +42,9 @@ int	ft_printf(const char*	format, ...)
 	return (length);
 }
 
-int		ft_printf_format(const char* format, va_list ap)
+int	ft_printf_format(const char	*format, va_list ap)
 {
-	int length;
+	int	length;
 
 	length = 0;
 	if ((*format) == 's')
@@ -67,26 +67,25 @@ int		ft_printf_format(const char* format, va_list ap)
 	return (length);
 }
 
-int	ft_printf_x_X(va_list ap, char c)
+int	ft_printf_x(va_list ap, char c)
 {
-	int num;
+	int	num;
 	int	length;
 
 	length = 0;
 	num = va_arg(ap, int);
-	length = printf_x_X((unsigned int)num, &length, c);
+	length = printf_x((unsigned int)num, &length, c);
 	return (length);
 }
 
 int	ft_printf_s(va_list	ap)
 {
-	char*	str;
-	int length;
-	char*	p;
+	char	*str;
+	int		length;
+	char	*p;
 
-	str = va_arg(ap, char*);
+	str = va_arg(ap, char *);
 	length = 0;
-
 	if (str == NULL)
 	{
 		p = "(null)";

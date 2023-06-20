@@ -2,17 +2,17 @@
 
 int	ft_printf_p(va_list ap)
 {
-	char*	str;
+	char	*str;
 	int		length;
 
-	str = (char*)va_arg(ap, void *);
+	str = (char *)va_arg(ap, void *);
 	write(1, "0x", 2);
 	length = 2;
 	length = ptr_int_hex((unsigned long long)str, &length);
 	return (length);
 }
 
-int	ptr_int_hex(unsigned long long int n, int* length)
+int	ptr_int_hex(unsigned long long int n, int	*length)
 {
 	char	*hex;
 
@@ -25,13 +25,13 @@ int	ptr_int_hex(unsigned long long int n, int* length)
 	else
 	{
 		ptr_int_hex(n / 16, length);
-		write(1, hex + (n%16), 1);
+		write(1, hex + (n % 16), 1);
 		(*length)++;
 	}
 	return ((*length));
 }
 
-int	printf_x_X(unsigned int n, int* length, char c)
+int	printf_x(unsigned int n, int	*length, char c)
 {
 	char	*hex;
 
@@ -46,8 +46,8 @@ int	printf_x_X(unsigned int n, int* length, char c)
 	}
 	else
 	{
-		printf_x_X(n / 16, length, c);
-		write(1, hex + (n%16), 1);
+		printf_x(n / 16, length, c);
+		write(1, hex + (n % 16), 1);
 		(*length)++;
 	}
 	return ((*length));
