@@ -58,7 +58,7 @@ int	ft_printf_format(const char	*format, va_list ap)
 	else if (*(format) == 'u')
 		length = length + ft_printf_u(ap);
 	else if ((*format) == 'x' || *(format) == 'X')
-		length = length + ft_printf_x_X(ap, *(format));
+		length = length + ft_printf_x(ap, *(format));
 	else if (*(format) == '%')
 	{
 		write(1, "%", 1);
