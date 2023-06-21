@@ -6,7 +6,7 @@
 /*   By: minjiki2 <minjiki2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:18:50 by minjiki2          #+#    #+#             */
-/*   Updated: 2023/06/21 14:25:36 by minjiki2         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:21:34 by minjiki2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,79 +99,4 @@ int	ft_printf_s(va_list	ap)
 		str++;
 	}
 	return (length);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	/*
-	1. %s, %c 테스트 예제.
-	*/
-	// int ret1;
-	// int ret2;
-	// char *s1 = NULL;
-	// char ch = 'a';
-
-	// ret1 = ft_printf("is it right? => %s %c\n", s1, ch);
-	// ret2 = printf("is it rigth? => %s %c\n", s1, ch); //(null)\n <- 이렇게 7개 리턴값
-	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
-
-	/*
-	2. %d, %i 테스트 예제.
-	n = 123, -123, -2147483648, ... test 필요
-	// */
-	// int num1 = 122222;
-	// printf("num1 : %d\n", num1);
-	// ft_printf("num1 : %d\n", num1);
-
-	// int ret1 = printf("isit_num1 : %d\n", num1);
-	// int ret2 = ft_printf("isit_num1 : %d\n", num1);
-	// printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
-
-	// int num = (int)-2147483648; //<- int 최대값,
-	// ret1 = ft_printf("int형 최대값 : %d\n", num);
-	// ret2 = printf("int형 최대값 : %d\n", num);
-	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2); 
-	//
-
-	// printf %p 시험
-	// int i = 10;
-	// printf("main1 : %p\n", &i);
-	// ft_printf("main2 : %p\n", &i);
-
-	/*
-	printf -> %u 예제
-	*/
-	
-	// unsigned int num2 = (unsigned int)-1;
-	
-	// int ret1 = printf("num2 : %u\n", num2);
-	// int ret2 = ft_printf("num2 : %u\n", num2);
-
-	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
-
-	
-
-	//printf -> %x 예제 <<<<<<<<<<< 이거 할 차례
-	int num = -1;
-	
-	int ret1 = printf("%%d : %d, %%x : %x, %%X : %X\n", num, num, num);
-	int ret2 = ft_printf("%%d : %d, %%x : %x, %%X : %X\n", num, num, num);
-	
-	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
-
-	// <<<<<<<<<<<< %X는 대문자로 나와야 함!!
-	/*
-	출력
-	*/
-	// int* ptr_l = &i;
-	// printf("<2> percept p : %p\n", ptr_l);
-	// ft_printf("ft_<2> percept p : %p\n", ptr_l);
-
-	// print a number in 16진수, with lowercase
-	// print  a number in 16진수, with lowercase
-
-	
-	return (0);
 }
