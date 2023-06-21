@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjiki2 <minjiki2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 12:54:48 by minjiki2          #+#    #+#             */
+/*   Updated: 2023/06/21 14:12:46 by minjiki2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_printf_d_i(va_list ap)
@@ -51,7 +63,8 @@ int	ft_printf_u(va_list ap)
 	unsigned int	num;
 	int				length;
 
-	num = va_arg(ap, int);
+	length = 0;
+	num = va_arg(ap, unsigned int);
 	length = ft_putnbr_u(num, &length);
 	return (length);
 }

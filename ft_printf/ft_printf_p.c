@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_p.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minjiki2 <minjiki2@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 12:54:41 by minjiki2          #+#    #+#             */
+/*   Updated: 2023/06/21 14:05:06 by minjiki2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_printf_p(va_list ap)
 {
@@ -6,6 +19,7 @@ int	ft_printf_p(va_list ap)
 	int		length;
 
 	str = (char *)va_arg(ap, void *);
+	// printf("str : %p\n", str);
 	write(1, "0x", 2);
 	length = 2;
 	length = ptr_int_hex((unsigned long long)str, &length);
@@ -14,6 +28,7 @@ int	ft_printf_p(va_list ap)
 
 int	ptr_int_hex(unsigned long long int n, int	*length)
 {
+	// printf("n : %llu\n", n);
 	char	*hex;
 
 	hex = "0123456789abcdef";

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjiki2 <minjiki2@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: minjiki2 <minjiki2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:18:50 by minjiki2          #+#    #+#             */
-/*   Updated: 2023/04/22 20:18:51 by minjiki2         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:25:36 by minjiki2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,26 +100,27 @@ int	ft_printf_s(va_list	ap)
 	}
 	return (length);
 }
-// ///#include <stdio.h>
+
+#include <stdio.h>
+
 int	main(void)
 {
 	/*
 	1. %s, %c 테스트 예제.
 	*/
-	// int ret1 = 0;
-	// int ret2 = 0;
+	// int ret1;
+	// int ret2;
 	// char *s1 = NULL;
+	// char ch = 'a';
 
-
-	// ret1 = ft_printf("is it right? => %s %s\n", s1, s1);
-	// ret2 = printf("is it rigth? => %s %s\n", s1, s1); //(null)\n <- 이렇게 7개 리턴값
+	// ret1 = ft_printf("is it right? => %s %c\n", s1, ch);
+	// ret2 = printf("is it rigth? => %s %c\n", s1, ch); //(null)\n <- 이렇게 7개 리턴값
 	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
-
 
 	/*
 	2. %d, %i 테스트 예제.
 	n = 123, -123, -2147483648, ... test 필요
-	*/
+	// */
 	// int num1 = 122222;
 	// printf("num1 : %d\n", num1);
 	// ft_printf("num1 : %d\n", num1);
@@ -128,8 +129,11 @@ int	main(void)
 	// int ret2 = ft_printf("isit_num1 : %d\n", num1);
 	// printf("리턴값 비교 : printf : %d, ft_printf : %d\n", ret1, ret2);
 
-	//int num = 4294967295; <- unsigned int 최대값, 
-	// ->>>>>>>>>>>%u -> ft_putnbr_u 부분에서 최대 최소 + 재귀 부분 조건 수정 need
+	// int num = (int)-2147483648; //<- int 최대값,
+	// ret1 = ft_printf("int형 최대값 : %d\n", num);
+	// ret2 = printf("int형 최대값 : %d\n", num);
+	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2); 
+	//
 
 	// printf %p 시험
 	// int i = 10;
@@ -138,17 +142,19 @@ int	main(void)
 
 	/*
 	printf -> %u 예제
-	unsigned int num2 = 4294967296;
-	
-	int ret1 = printf("printf : %u\n", num2);
-	int ret2 = ft_printf("ft_printf : %u\n", num2);
-
-	printf("printf ret1 : %d, ft_printf ret2 : %d\n", ret1, ret2);
-
 	*/
+	
+	// unsigned int num2 = (unsigned int)-1;
+	
+	// int ret1 = printf("num2 : %u\n", num2);
+	// int ret2 = ft_printf("num2 : %u\n", num2);
 
-	// printf -> %x 예제 <<<<<<<<<<< 이거 할 차례
-	int num = 2147483647;
+	// printf("ret1 : %d, ret2 : %d\n", ret1, ret2);
+
+	
+
+	//printf -> %x 예제 <<<<<<<<<<< 이거 할 차례
+	int num = -1;
 	
 	int ret1 = printf("%%d : %d, %%x : %x, %%X : %X\n", num, num, num);
 	int ret2 = ft_printf("%%d : %d, %%x : %x, %%X : %X\n", num, num, num);
