@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_printf_p(va_list ap)
 {
@@ -19,7 +18,6 @@ int	ft_printf_p(va_list ap)
 	int		length;
 
 	str = (char *)va_arg(ap, void *);
-	// printf("str : %p\n", str);
 	write(1, "0x", 2);
 	length = 2;
 	length = ptr_int_hex((unsigned long long)str, &length);
@@ -28,7 +26,6 @@ int	ft_printf_p(va_list ap)
 
 int	ptr_int_hex(unsigned long long int n, int	*length)
 {
-	// printf("n : %llu\n", n);
 	char	*hex;
 
 	hex = "0123456789abcdef";
