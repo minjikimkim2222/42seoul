@@ -107,6 +107,14 @@ double va_sum(int type, ...)
 
 ### 4. ft_printf %x가 unsigned int로 받는 이유
 - %x는 음이 아닌 정수를 16진수로 출력하기에
+
+### 5. write함수 실패 시 -1 리턴하면, ft_printf 도 -1 리턴하게끔 예외 처리 중
+- 명시적으로 write()하는 부분은 if (n <= 9)에 있는데 왜 그림처럼 ft_putnbr_u에서도 리턴값의 에러 처리를 하는지?
+  ![image](https://github.com/minjikimkim2222/42seoul/assets/96869808/10d5ab65-a401-455d-bd4e-4a4b2244091e)
+   - 그 이유 : ft_putnbr_u 함수 내에서 재귀 호출로 인해 반환된 -1을 받아야 하지만, 현재 코드에서는 그 값을 무시하는 중. <br>
+   이로 인해, 재귀 호출된 ft_putnbr_u 함수 중 하나에서 write 함수가 실패하는 경우에도 이를 적절히 처리하지 못하는 중!
+
+
   
 
 
