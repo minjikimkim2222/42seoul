@@ -1,22 +1,8 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: minjiki2 <minjiki2@student.42seoul.>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/22 19:29:57 by minjiki2          #+#    #+#              #
-#    Updated: 2023/04/22 19:29:58 by minjiki2         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-
-
 MakefileCC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 INCDIR = ft_printf.h
-SRCS = ft_printf_p.c ft_printf.c ft_putnbr.c
+SRCS = ft_putchar.c ft_printf.c ft_puthex.c ft_putstr.c ft_putnbr.c ft_putptr.c ft_printf_format.c ft_printf.c ft_putunbr.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,37 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: minjiki2 <minjiki2@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 12:54:48 by minjiki2          #+#    #+#             */
-/*   Updated: 2023/06/21 14:12:46 by minjiki2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
-int	ft_printf_d_i(va_list ap)
-{
-	int	n;
-	int	length;
-
-	n = va_arg(ap, int);
-	length = 0;
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		length = 11;
-	}
-	else
-	{
-		length = length + ft_putnbr(n, &length);
-	}
-	return (length);
-}
-
-int	ft_putnbr(int n, int *length)
+static int	ft_putnbr_recursive(int n, int *length)
 {
 	char	remainder;
 
@@ -51,38 +20,26 @@ int	ft_putnbr(int n, int *length)
 	{
 		remainder = (n % 10) + '0';
 		n = n / 10;
-		ft_putnbr(n, length);
+		ft_putnbr_recursive(n, length);
 		write(1, &remainder, 1);
 		(*length)++;
 	}
 	return ((int)(*length));
 }
 
-int	ft_printf_u(va_list ap)
+int	ft_putnbr(int n)
 {
-	unsigned int	num;
-	int				length;
+	int	length;
 
 	length = 0;
-	num = va_arg(ap, unsigned int);
-	length = ft_putnbr_u(num, &length);
-	return (length);
-}
-
-int	ft_putnbr_u(unsigned int n, int *length)
-{
-	char	c;
-
-	if (n <= 9)
+	if (n == -2147483648)
 	{
-		c = n + '0';
-		(*length)++;
-		write(1, &c, 1);
+		write(1, "-2147483648", 11);
+		length = 11;
 	}
 	else
 	{
-		ft_putnbr_u(n / 10, length);
-		ft_putnbr_u(n % 10, length);
+		length = length + ft_putnbr_recursive(n, &length);
 	}
-	return (*length);
+	return (length);
 }
