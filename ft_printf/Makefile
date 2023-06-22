@@ -2,7 +2,7 @@ MakefileCC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 INCDIR = ft_printf.h
-SRCS = ft_putchar.c ft_printf.c ft_puthex.c ft_putstr.c ft_putnbr.c ft_putptr.c ft_printf_format.c ft_printf.c ft_putunbr.c
+SRCS = ft_putchar.c ft_printf.c ft_puthex.c ft_putstr.c ft_putnbr.c ft_putptr.c ft_printf_format_check.c ft_printf.c ft_putunbr.c
 
 OBJS = $(SRCS:.c=.o)
 

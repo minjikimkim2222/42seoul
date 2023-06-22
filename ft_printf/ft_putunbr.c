@@ -8,12 +8,14 @@ static int	ft_putnbr_u(unsigned int n, int *length)
 	{
 		c = n + '0';
 		(*length)++;
-		write(1, &c, 1);
+		return (write(1, &c, 1));
 	}
 	else
 	{
-		ft_putnbr_u(n / 10, length);
-		ft_putnbr_u(n % 10, length);
+		if (ft_putnbr_u(n / 10, length) == -1)
+			return (-1);
+		if (ft_putnbr_u(n % 10, length) == -1)
+			return (-1);
 	}
 	return (*length);
 }

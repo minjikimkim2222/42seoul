@@ -1,30 +1,26 @@
 #include "ft_printf.h"
 
-static int	ft_putnbr_recursive(int n, int *length)
+static int ft_putnbr_recursive(int n, int *length)
 {
-	char	remainder;
+	char remainder;
 
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		(*length)++;
-		n = n * (-1);
-	}
-	if (n >= 0 && (n / 10) == 0)
-	{
-		n = n + '0';
-		write(1, &n, 1);
-		(*length)++;
-	}
-	else
-	{
-		remainder = (n % 10) + '0';
-		n = n / 10;
-		ft_putnbr_recursive(n, length);
-		write(1, &remainder, 1);
-		(*length)++;
-	}
-	return ((int)(*length));
+    if (n < 0)
+    {
+        if (write(1, "-", 1) == -1)
+            return (-1);
+        (*length)++;
+        n = -n;
+    }
+    if (n >= 10)
+    {
+        if (ft_putnbr_recursive(n / 10, length) == -1)
+            return (-1);
+    }
+	remainder = (n % 10) + '0';
+    if (write(1, &remainder, 1) == -1)
+    	return (-1);
+    (*length)++;
+    return (*length);
 }
 
 int	ft_putnbr(int n)
@@ -34,7 +30,8 @@ int	ft_putnbr(int n)
 	length = 0;
 	if (n == -2147483648)
 	{
-		write(1, "-2147483648", 11);
+		if (write(1, "-2147483648", 11) == -1)
+			return (-1);
 		length = 11;
 	}
 	else
