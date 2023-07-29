@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minjiki2 <minjiki2@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: minjiki2 <minjiki2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 08:59:49 by minjiki2          #+#    #+#             */
-/*   Updated: 2023/07/28 08:59:53 by minjiki2         ###   ########.fr       */
+/*   Updated: 2023/07/29 21:15:55 by minjiki2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*read_set_backup(int fd, char *backup)
 		{
 			free(backup);
 			backup = NULL;
-			break ;
+			break;
 		}
 		buff[ret] = '\0';
 		if (backup == NULL)
