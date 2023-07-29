@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*backup;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0)
 		return (NULL);
 	backup = read_set_backup(fd, backup);
 	if (!backup)
