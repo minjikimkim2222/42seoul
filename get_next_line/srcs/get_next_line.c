@@ -71,8 +71,6 @@ char	*read_set_backup(int fd, char *backup)
 	int		ret;
 
 	buff = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
 	while (1)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
@@ -82,7 +80,7 @@ char	*read_set_backup(int fd, char *backup)
 		{
 			free(backup);
 			backup = NULL;
-			break;
+			break ;
 		}
 		buff[ret] = '\0';
 		if (backup == NULL)
