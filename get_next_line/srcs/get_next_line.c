@@ -76,8 +76,14 @@ char	*read_set_backup(int fd, char *backup)
 	while (1)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
-		if (ret <= 0)
+		if (ret == 0)
 			break ;
+		else if (ret == -1)
+		{
+			free(backup);
+			backup = NULL;
+			break ;
+		}
 		buff[ret] = '\0';
 		if (backup == NULL)
 			backup = ft_strdup(buff);
